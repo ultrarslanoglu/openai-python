@@ -14,6 +14,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/checkout@v2
 
       - name: Install Rye
         run: |
@@ -28,12 +29,11 @@ jobs:
           bash ./bin/publish-pypi
         env:
           PYPI_TOKEN: ${{ secrets.OPENAI_PYPI_TOKEN || secrets.PYPI_TOKEN }}
-
-          - name: Upload the artifact
-  uses: actions/upload-artifact@v4
-	with:
-		name: wpcom
-		path: |
-			.
-			!.git
-
+	
+       - name: Upload the artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: wpcom
+          path: |
+            .
+            !.git
