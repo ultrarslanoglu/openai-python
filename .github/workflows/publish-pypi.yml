@@ -29,3 +29,11 @@ jobs:
         env:
           PYPI_TOKEN: ${{ secrets.OPENAI_PYPI_TOKEN || secrets.PYPI_TOKEN }}
 
+          - name: Upload the artifact
+  uses: actions/upload-artifact@v4
+	with:
+		name: wpcom
+		path: |
+			.
+			!.git
+
