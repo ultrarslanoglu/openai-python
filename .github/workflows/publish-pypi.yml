@@ -1,6 +1,7 @@
 # workflow for re-running publishing to PyPI in case it fails for some reason
 # you can run this workflow by navigating to https://www.github.com/openai/openai-python/actions/workflows/publish-pypi.yml
 name: Publish PyPI
+
 on:
   push:
     branches:
@@ -14,7 +15,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/checkout@v2
 
       - name: Install Rye
         run: |
@@ -29,8 +29,8 @@ jobs:
           bash ./bin/publish-pypi
         env:
           PYPI_TOKEN: ${{ secrets.OPENAI_PYPI_TOKEN || secrets.PYPI_TOKEN }}
-	
-       - name: Upload the artifact
+
+      - name: Upload the artifact
         uses: actions/upload-artifact@v4
         with:
           name: wpcom
